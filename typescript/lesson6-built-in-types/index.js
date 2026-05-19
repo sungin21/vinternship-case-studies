@@ -1,5 +1,5 @@
 "use strict";
-let studentName = "Sungin";
+let studentName = "Alex";
 let age = 21;
 let isStudent = true;
 console.log(studentName);
@@ -9,7 +9,7 @@ console.log(isStudent);
 let marks = [85, 90, 78];
 console.log("Marks:", marks);
 // Tuple
-let person = ["Rahul", 25];
+let person = ["User", 25];
 console.log("Tuple:", person);
 // Enum
 var Direction;
@@ -23,7 +23,7 @@ let move = Direction.North;
 console.log("Direction:", move);
 // Object
 let user = {
-    name: "Sungin",
+    name: "Alex",
     city: "Bangalore"
 };
 console.log(user);

@@ -1,5 +1,4 @@
-
-let studentName: string = "Sungin";
+let studentName: string = "Alex";
 let age: number = 21;
 let isStudent: boolean = true;
 
@@ -13,7 +12,7 @@ let marks: number[] = [85, 90, 78];
 console.log("Marks:", marks);
 
 // Tuple
-let person: [string, number] = ["Rahul", 25];
+let person: [string, number] = ["User", 25];
 
 console.log("Tuple:", person);
 
@@ -31,7 +30,7 @@ console.log("Direction:", move);
 
 // Object
 let user: { name: string; city: string } = {
-    name: "Sungin",
+    name: "Alex",
     city: "Bangalore"
 };
 
