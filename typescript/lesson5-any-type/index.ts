@@ -1,30 +1,41 @@
-let data: any = "Hello TypeScript";
+let surveyAnswer: any;
 
-console.log("Value:", data);
-console.log("Type:", typeof data);
+surveyAnswer = "Yes";
+console.log("Answer:", surveyAnswer);
 
-// Changing to number
-data = 100;
+surveyAnswer = 5;
+console.log("Answer:", surveyAnswer);
 
-console.log("Value:", data);
-console.log("Type:", typeof data);
+surveyAnswer = ["Option A", "Option B"];
+console.log("Answer:", surveyAnswer);
 
-// Changing to boolean
-data = true;
-
-console.log("Value:", data);
-console.log("Type:", typeof data);
-
-// Function using any type
-function display(value: any): void {
-    console.log("Displaying:", value);
-}
-
-display("Text");
-display(500);
-display(false);
 
 // Array with any type
-let mixedData: any[] = ["Apple", 10, true];
+let allAnswers: any[] = [];
 
-console.log(mixedData);
+allAnswers.push("No");
+allAnswers.push(10);
+allAnswers.push({ comment: "N/A" });
+
+for (let ans of allAnswers) {
+    console.log("Received answer:", ans);
+}
+
+
+// Interactive Challenge
+let recordedAnswers: { [key: number]: any } = {};
+
+function recordAnswer(questionId: number, answer: any): void {
+    recordedAnswers[questionId] = answer;
+}
+
+
+// Add different answer types
+recordAnswer(1, "Blue");
+recordAnswer(2, 42);
+recordAnswer(3, ["Apple", "Banana"]);
+
+
+// Print all answers
+console.log("Recorded Answers:");
+console.log(recordedAnswers);
