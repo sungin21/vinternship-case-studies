@@ -1,7 +1,11 @@
 // Arrays
 let patientIds: number[] = [101, 102, 103];
 
-let patientNames: Array<string> = ["Alice", "Bob", "Carol"];
+let patientNames: string[] = [
+    "Alice",
+    "Bob",
+    "Carol"
+];
 
 console.log(patientIds);
 console.log(patientNames);
@@ -17,105 +21,133 @@ console.log(patientInfo);
 
 
 // Enum
-enum PatientStatus {
+enum HospitalStatus {
     Admitted,
     Discharged,
     UnderObservation
 }
 
-let patientStatus: PatientStatus = PatientStatus.Admitted;
+let currentHospitalStatus: HospitalStatus =
+    HospitalStatus.Admitted;
 
-console.log(patientStatus);
+console.log(currentHospitalStatus);
 
 
 // Interface
-interface Patient {
-    id: number;
-    name: string;
-    age: number;
-    status: PatientStatus;
-    vitals: [number, number];
+interface PatientRecord {
+    patientId: number;
+    patientName: string;
+    patientAge: number;
+    patientStatus: HospitalStatus;
+    patientVitals: [number, number];
 }
 
 
 // Array of patients
-let patients: Patient[] = [
+let patientRecords: PatientRecord[] = [
     {
-        id: 1,
-        name: "Alice",
-        age: 30,
-        status: PatientStatus.Admitted,
-        vitals: [120, 80]
+        patientId: 1,
+        patientName: "Alice",
+        patientAge: 30,
+        patientStatus: HospitalStatus.Admitted,
+        patientVitals: [120, 80]
     },
     {
-        id: 2,
-        name: "Bob",
-        age: 45,
-        status: PatientStatus.UnderObservation,
-        vitals: [130, 85]
+        patientId: 2,
+        patientName: "Bob",
+        patientAge: 45,
+        patientStatus: HospitalStatus.UnderObservation,
+        patientVitals: [130, 85]
     }
 ];
 
-console.log(patients);
+console.log(patientRecords);
 
 
 // Class
-class Nurse {
+class NurseWorker {
 
-    constructor(public name: string) {}
+    nurseName: string;
+
+    constructor(inputName: string) {
+        this.nurseName = inputName;
+    }
 
     takeVitals(
-        patient: Patient,
-        vitals: [number, number]
+        patient: PatientRecord,
+        newVitals: [number, number]
     ): void {
 
-        patient.vitals = vitals;
+        patient.patientVitals = newVitals;
 
         console.log(
-            `${this.name} updated vitals for ${patient.name}`
+            this.nurseName +
+            " updated vitals for " +
+            patient.patientName
         );
     }
 }
 
 
 // Using class
-let newVitals: [number, number] = [118, 76];
+let latestVitals: [number, number] = [118, 76];
 
-let nurse = new Nurse("Carol");
+let nurseWorker = new NurseWorker("Carol");
 
-nurse.takeVitals(patients[0], newVitals);
+nurseWorker.takeVitals(
+    patientRecords[0],
+    latestVitals
+);
 
 
 // Interactive Challenge
-enum Role {
+enum EmployeeRole {
     Doctor,
     Nurse,
     Admin
 }
 
-interface Staff {
-    id: number;
-    name: string;
-    role: Role;
+
+interface StaffMember {
+    staffId: number;
+    employeeName: string;
+    employeeRole: EmployeeRole;
 }
 
 
-let staffMembers: Staff[] = [
-    { id: 1, name: "John", role: Role.Doctor },
-    { id: 2, name: "Emma", role: Role.Nurse },
-    { id: 3, name: "David", role: Role.Admin }
+let hospitalStaff: StaffMember[] = [
+    {
+        staffId: 1,
+        employeeName: "John",
+        employeeRole: EmployeeRole.Doctor
+    },
+    {
+        staffId: 2,
+        employeeName: "Emma",
+        employeeRole: EmployeeRole.Nurse
+    },
+    {
+        staffId: 3,
+        employeeName: "David",
+        employeeRole: EmployeeRole.Admin
+    }
 ];
 
 
-function printStaffSummary(staffList: Staff[]): void {
+function printHospitalStaff(
+    staffList: StaffMember[]
+): void {
 
-    for (let staff of staffList) {
+    for (let worker of staffList) {
 
         console.log(
-            `Name: ${staff.name}, Role: ${Role[staff.role]}`
+            "Name: " +
+            worker.employeeName +
+            ", Role: " +
+            EmployeeRole[worker.employeeRole]
         );
     }
 }
 
 
-printStaffSummary(staffMembers);
+printHospitalStaff(hospitalStaff);

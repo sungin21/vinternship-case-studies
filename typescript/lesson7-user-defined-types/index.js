@@ -1,7 +1,11 @@
 "use strict";
 // Arrays
 let patientIds = [101, 102, 103];
-let patientNames = ["Alice", "Bob", "Carol"];
+let patientNames = [
+    "Alice",
+    "Bob",
+    "Carol"
+];
 console.log(patientIds);
 console.log(patientNames);
 // Tuples
@@ -10,62 +14,79 @@ let patientInfo = ["Alice", 30];
 console.log(vitalSigns);
 console.log(patientInfo);
 // Enum
-var PatientStatus;
-(function (PatientStatus) {
-    PatientStatus[PatientStatus["Admitted"] = 0] = "Admitted";
-    PatientStatus[PatientStatus["Discharged"] = 1] = "Discharged";
-    PatientStatus[PatientStatus["UnderObservation"] = 2] = "UnderObservation";
-})(PatientStatus || (PatientStatus = {}));
-let patientStatus = PatientStatus.Admitted;
-console.log(patientStatus);
+var HospitalStatus;
+(function (HospitalStatus) {
+    HospitalStatus[HospitalStatus["Admitted"] = 0] = "Admitted";
+    HospitalStatus[HospitalStatus["Discharged"] = 1] = "Discharged";
+    HospitalStatus[HospitalStatus["UnderObservation"] = 2] = "UnderObservation";
+})(HospitalStatus || (HospitalStatus = {}));
+let currentHospitalStatus = HospitalStatus.Admitted;
+console.log(currentHospitalStatus);
 // Array of patients
-let patients = [
+let patientRecords = [
     {
-        id: 1,
-        name: "Alice",
-        age: 30,
-        status: PatientStatus.Admitted,
-        vitals: [120, 80]
+        patientId: 1,
+        patientName: "Alice",
+        patientAge: 30,
+        patientStatus: HospitalStatus.Admitted,
+        patientVitals: [120, 80]
     },
     {
-        id: 2,
-        name: "Bob",
-        age: 45,
-        status: PatientStatus.UnderObservation,
-        vitals: [130, 85]
+        patientId: 2,
+        patientName: "Bob",
+        patientAge: 45,
+        patientStatus: HospitalStatus.UnderObservation,
+        patientVitals: [130, 85]
     }
 ];
-console.log(patients);
+console.log(patientRecords);
 // Class
-class Nurse {
-    name;
-    constructor(name) {
-        this.name = name;
+class NurseWorker {
+    nurseName;
+    constructor(inputName) {
+        this.nurseName = inputName;
     }
-    takeVitals(patient, vitals) {
-        patient.vitals = vitals;
-        console.log(`${this.name} updated vitals for ${patient.name}`);
+    takeVitals(patient, newVitals) {
+        patient.patientVitals = newVitals;
+        console.log(this.nurseName +
+            " updated vitals for " +
+            patient.patientName);
     }
 }
 // Using class
-let newVitals = [118, 76];
-let nurse = new Nurse("Carol");
-nurse.takeVitals(patients[0], newVitals);
+let latestVitals = [118, 76];
+let nurseWorker = new NurseWorker("Carol");
+nurseWorker.takeVitals(patientRecords[0], latestVitals);
 // Interactive Challenge
-var Role;
-(function (Role) {
-    Role[Role["Doctor"] = 0] = "Doctor";
-    Role[Role["Nurse"] = 1] = "Nurse";
-    Role[Role["Admin"] = 2] = "Admin";
-})(Role || (Role = {}));
-let staffMembers = [
-    { id: 1, name: "John", role: Role.Doctor },
-    { id: 2, name: "Emma", role: Role.Nurse },
-    { id: 3, name: "David", role: Role.Admin }
+var EmployeeRole;
+(function (EmployeeRole) {
+    EmployeeRole[EmployeeRole["Doctor"] = 0] = "Doctor";
+    EmployeeRole[EmployeeRole["Nurse"] = 1] = "Nurse";
+    EmployeeRole[EmployeeRole["Admin"] = 2] = "Admin";
+})(EmployeeRole || (EmployeeRole = {}));
+let hospitalStaff = [
+    {
+        staffId: 1,
+        employeeName: "John",
+        employeeRole: EmployeeRole.Doctor
+    },
+    {
+        staffId: 2,
+        employeeName: "Emma",
+        employeeRole: EmployeeRole.Nurse
+    },
+    {
+        staffId: 3,
+        employeeName: "David",
+        employeeRole: EmployeeRole.Admin
+    }
 ];
-function printStaffSummary(staffList) {
-    for (let staff of staffList) {
-        console.log(`Name: ${staff.name}, Role: ${Role[staff.role]}`);
+function printHospitalStaff(staffList) {
+    for (let worker of staffList) {
+        console.log("Name: " +
+            worker.employeeName +
+            ", Role: " +
+            EmployeeRole[worker.employeeRole]);
     }
 }
-printStaffSummary(staffMembers);
+printHospitalStaff(hospitalStaff);
